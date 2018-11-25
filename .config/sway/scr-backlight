@@ -1,0 +1,69 @@
+#!/usr/bin/env python
+
+import bisect
+import subprocess
+import sys
+
+def brightness_query():
+    return float(subprocess.check_output(["xbacklight"]))
+
+def brightness_set(x):
+    x = brightness_clamp(x)
+    subprocess.run(["xbacklight", "-set", str(x)], stdout=subprocess.PIPE, check=True)
+
+def brightness_clamp(x):
+    if x > 100:
+        clamped_val = 100
+    elif x < 0:
+        clamped_val = 0
+    else:
+        return x
+    sys.stderr.write("WARNING: Attempted to set a brightness level of {}, clamping to 0..100".format(x))
+    return clamped_val
+
+# Array of allowable brightness levels for incrementing
+# -1, 101 used for preventing out-of-bounds accesses and are
+# clamped back to 0..100 anyway.
+brightness_levels = [
+    -1, 0, 1, 2, 3, 4,
+    10, 15, 20, 40,
+    60, 100, 101
+]
+
+def brightness_inc():
+    x = int(brightness_query())
+    brightness_set(brightness_levels[bisect.bisect_left(brightness_levels, x) + 1])
+
+def brightness_dec():
+    x = int(brightness_query())
+    brightness_set(brightness_levels[bisect.bisect_left(brightness_levels, x) - 1])
+
+
+def verify_argnum(x):
+    if len(sys.argv) != x:
+        usage_msg()
+        sys.exit(1)
+
+def usage_msg():
+    print("Usage: {} {{set [x]|query|inc|dec}}".format(sys.argv[0]))
+
+if len(sys.argv) < 2:
+    usage_msg()
+    sys.exit(1)
+command = sys.argv[1]
+
+if command == "set":
+    verify_argnum(3)
+    brightness_set(float(sys.argv[2]))
+elif command == "query":
+    verify_argnum(2)
+    print(brightness_query())
+elif command == "inc":
+    verify_argnum(2)
+    brightness_inc()
+elif command == "dec":
+    verify_argnum(2)
+    brightness_dec()
+else:
+    usage_msg()
+    sys.exit(1)
