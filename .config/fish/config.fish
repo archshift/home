@@ -2,6 +2,7 @@ set DIR $HOME/.config/fish
 
 set -x EDITOR nvim
 
-source "$DIR/(hostname).fish"
+set ENVVAR_FILE $DIR/(hostname).envvars.fish
+source $ENVVAR_FILE
 
 set fish_greeting ""
