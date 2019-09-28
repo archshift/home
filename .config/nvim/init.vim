@@ -25,7 +25,6 @@ Plug 'plasticboy/vim-markdown'
 
 Plug 'scrooloose/nerdtree'
 Plug 'scrooloose/syntastic'
-Plug 'valloric/youcompleteme'
 Plug 'tpope/vim-fugitive'
 call plug#end()
 
