@@ -1,0 +1,14 @@
+#!/bin/bash
+set -ex
+INPUT=$(realpath $1)
+OUTPUT=$(realpath $2)
+FILENAME=$(basename $1)
+NAME=${FILENAME%.ipynb}
+TMPDIR=$(realpath $NAME.render.tmp)
+mkdir $TMPDIR
+cd $TMPDIR
+jupyter-nbconvert "$INPUT" --to latex --output-dir=.
+pdflatex "$NAME.tex"
+mv "$NAME.pdf" "$OUTPUT"
+
+rm -r $TMPDIR
