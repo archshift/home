@@ -5,7 +5,7 @@ import subprocess
 import sys
 
 def brightness_query():
-    return float(subprocess.check_output(["xbacklight"]))
+    return float(subprocess.check_output(["xbacklight", "-get"]))
 
 def brightness_set(x):
     x = brightness_clamp(x)

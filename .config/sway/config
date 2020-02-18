@@ -24,7 +24,7 @@ output eDP-1 background ~/Desktop/Background.jpg fill
 floating_modifier $mod
 
 # start a terminal
-bindsym $mod+Return exec fish -c "konsole"
+bindsym $mod+Return exec fish -c "alacritty"
 bindsym $mod+Shift+Return exec fish -c "dolphin"
 
 # kill focused window
@@ -162,7 +162,8 @@ bindsym Shift+XF86MonBrightnessDown exec light -U 1
 bindsym XF86KbdBrightnessUp exec bash ~/.config/i3/kbd-backlight.sh inc 10
 bindsym XF86KbdBrightnessDown exec bash ~/.config/i3/kbd-backlight.sh dec 10
 
-input 1452:657:bcm5974 natural_scroll enabled
+input 1739:31251:SYNA2393:00_06CB:7A13_Touchpad natural_scroll enabled
+input 1739:31251:SYNA2393:00_06CB:7A13_Touchpad click_method clickfinger 
 
 # Start i3bar to display a workspace bar (plus the system information i3status
 # finds out, if available)
@@ -170,7 +171,7 @@ bar {
     status_command i3status-rs ~/.config/i3status-rs.toml
     font Fira Sans 10
     #height 12 
-    #tray_padding 3
+    tray_padding 3
 
     colors {
         background #000D14
