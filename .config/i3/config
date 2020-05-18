@@ -40,7 +40,7 @@ gaps outer 8
 floating_modifier $mod
 
 # start a terminal
-bindsym $mod+Return exec fish -c "konsole"
+bindsym $mod+Return exec fish -c "alacritty"
 bindsym $mod+Shift+Return exec fish -c "pcmanfm"
 
 # kill focused window

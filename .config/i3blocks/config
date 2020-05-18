@@ -24,7 +24,7 @@
 #
 # The top properties below are applied to every block, but can be overridden.
 # Each block command defaults to the script name to avoid boilerplate.
-command=/usr/lib/i3blocks/$BLOCK_NAME
+command=/usr/lib/i3blocks/$BLOCK_NAME/$BLOCK_NAME
 separator=false
 separator_block_width=10
 markup=none
@@ -54,16 +54,11 @@ interval=1
 # The script may be called with a optional argument to set the alert
 # (defaults to 10 for 10%).
 [disk]
-label=HOME
+label=HOME 
 interval=30
 
 [disk]
-label=HD3
-instance=/mnt/HD3
-interval=30
-
-[disk]
-label=TMP
+label=TMP 
 instance=/tmp
 interval=30
 
@@ -79,7 +74,7 @@ interval=30
 # The script may be called with -w and -c switches to specify thresholds,
 # see the script for details.
 [temperature]
-label=TEMP
+label=TEMP 
 interval=10
 
 # Network interface monitoring
@@ -104,7 +99,7 @@ interval=1800
 # The script may be called with -w and -c switches to specify thresholds,
 # see the script for details.
 [cpu_usage]
-label=CPU
+label=CPU 
 interval=2
 
 [battery]
