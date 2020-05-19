@@ -1,3 +1,5 @@
+set -x PATH $PATH $HOME/.local/bin 
+
 # Perl
 set -x PATH /usr/bin/vendor_perl $PATH
 
